@@ -45,6 +45,7 @@
     [dict setValue:extra_data.mj_JSONString forKey:@"extra_data"];
     
     [[FBHelper getCurrentController] showHudInView:[FBHelper getCurrentController].view hint:@""];
+    [FBUMManager event:@"template_page_button_4" attributes:@{}];
     [FBRequestData requestWithUrl:toSubmitForm_Url para:dict Complete:^(NSData * _Nonnull data) {
         [[FBHelper getCurrentController] hideHud];
         NSDictionary *registerDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];

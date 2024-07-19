@@ -96,6 +96,7 @@
     [dict setValue:extra_data.mj_JSONString forKey:@"extra_data"];
     
     [[FBHelper getCurrentController] showHudInView:[FBHelper getCurrentController].view hint:@""];
+    [FBUMManager event:@"template_page_button_5" attributes:@{}];
     [FBRequestData requestWithUrl:toSubmitForm_Url para:dict Complete:^(NSData * _Nonnull data) {
         [[FBHelper getCurrentController] hideHud];
         NSDictionary *registerDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -134,7 +135,19 @@
 }
 - (void)sureBtnClick
 {
-    [self requestSumitData];
+    if([FBHomeConfManager shareInstance].templateModel.template_page_5.is_login == 1){//需要登录
+        if([FBUserInfoModel shareInstance].token.length > 0){
+            [self requestSumitData];
+        }else{
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appDelegate oneLittleItemBtnClick];
+        }
+    }else{
+        FBWebViewController *webvc = [[FBWebViewController alloc] init];
+        webvc.navTitle = @"";
+        webvc.urlStr = [FBHomeConfManager shareInstance].templateModel.template_page_5.url;
+        [self.navigationController pushViewController:webvc animated:YES];
+    }
 }
 #pragma mark - 弹窗代理
 //选择地址弹窗确认

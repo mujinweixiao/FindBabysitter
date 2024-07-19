@@ -64,6 +64,7 @@
 		A847A5772C3786A5007CA612 /* FBTemplateTwoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A847A5762C3786A5007CA612 /* FBTemplateTwoModel.m */; };
 		A847A57A2C378763007CA612 /* FBTemplateThreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A847A5792C378763007CA612 /* FBTemplateThreeModel.m */; };
 		A847A57D2C3787C5007CA612 /* FBTemplateFourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A847A57C2C3787C5007CA612 /* FBTemplateFourModel.m */; };
+		A8797B492C4A61530089E207 /* FBUMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A8797B482C4A61530089E207 /* FBUMManager.m */; };
 		A8A9D6CE2C323664009042E1 /* FBHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9D6CD2C323664009042E1 /* FBHomeController.m */; };
 		A8A9D6D52C323824009042E1 /* FBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9D6D42C323824009042E1 /* FBMineController.m */; };
 		A8A9D6DC2C323945009042E1 /* FBNearbyController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A9D6DB2C323945009042E1 /* FBNearbyController.m */; };
@@ -217,6 +218,8 @@
 		A847A57B2C3787C5007CA612 /* FBTemplateFourModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBTemplateFourModel.h; sourceTree = "<group>"; };
 		A847A57C2C3787C5007CA612 /* FBTemplateFourModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBTemplateFourModel.m; sourceTree = "<group>"; };
 		A847A57E2C37894B007CA612 /* FBApiHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBApiHeader.h; sourceTree = "<group>"; };
+		A8797B472C4A61530089E207 /* FBUMManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBUMManager.h; sourceTree = "<group>"; };
+		A8797B482C4A61530089E207 /* FBUMManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBUMManager.m; sourceTree = "<group>"; };
 		A880D4632C48F6EF00A4EE81 /* FindBabysitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FindBabysitter.entitlements; sourceTree = "<group>"; };
 		A8A9D6CC2C323664009042E1 /* FBHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBHomeController.h; sourceTree = "<group>"; };
 		A8A9D6CD2C323664009042E1 /* FBHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBHomeController.m; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 				A80B28132C2D418E00C62C5B /* FBNavigationController.m */,
 				A80B28152C2D418E00C62C5B /* UINavigationController+FDFullscreenPopGesture.h */,
 				A80B28162C2D418E00C62C5B /* UINavigationController+FDFullscreenPopGesture.m */,
+				A8797B472C4A61530089E207 /* FBUMManager.h */,
+				A8797B482C4A61530089E207 /* FBUMManager.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -848,6 +853,7 @@
 			files = (
 				A847A5502C353E7F007CA612 /* NSParagraphStyle+YYText.m in Sources */,
 				A80B281A2C2D418E00C62C5B /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				A8797B492C4A61530089E207 /* FBUMManager.m in Sources */,
 				A847A5412C353E7F007CA612 /* YYTextContainerView.m in Sources */,
 				A847A5712C3784A8007CA612 /* FBTemplateModel.m in Sources */,
 				A847A5532C353E7F007CA612 /* YYTextTransaction.m in Sources */,

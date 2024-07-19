@@ -100,6 +100,9 @@
             FBHomeConfModel *homeConfModel = [FBHomeConfModel mj_objectWithKeyValues:data];
             [FBHomeConfManager shareInstance].homeConfModel = homeConfModel;
             self.homeConfModel = homeConfModel;
+            
+            NSNotification *notification = [NSNotification notificationWithName:NotHomeConfigRequestSuccess object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
         }else{
             NSString *msg = [registerDic string:@"msg"];
             [[FBHelper getCurrentController] showHint:msg];
@@ -201,27 +204,22 @@
 #pragma mark - click
 - (void)searchBtnClick
 {
-    //测试代码
-    //登录弹窗
-//    FBLoginPopController *vc = [[FBLoginPopController alloc] init];
-//    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-//    [self presentViewController:vc animated:YES completion:nil];
-//    return;
-    
-//    FBSubmitSuccessController *vc = [FBSubmitSuccessController new];
-//    [self.navigationController pushViewController:vc animated:YES];
-//    return;
+    [FBUMManager event:@"top_button" attributes:@{}];
     
     FBHomeConfItemModel *topItemModel = [self.homeConfModel.top_button objectAtIndex:0];
     [self clickItemWithModel:topItemModel];
 }
 - (void)oneLittleItemBtnClick
 {
+    [FBUMManager event:@"middle_button_1" attributes:@{}];
+
     FBHomeConfItemModel *oneItemModel = [self.homeConfModel.middle_button objectAtIndex:0];
     [self clickItemWithModel:oneItemModel];
 }
 - (void)twoLittleItemBtnClick
 {
+    [FBUMManager event:@"middle_button_2" attributes:@{}];
+
     FBHomeConfItemModel *twoItemModel = [self.homeConfModel.middle_button objectAtIndex:1];
     [self clickItemWithModel:twoItemModel];
 
@@ -230,6 +228,8 @@
 }
 - (void)bigItemBtnClick
 {
+    [FBUMManager event:@"middle_button_3" attributes:@{}];
+
     FBHomeConfItemModel *threeItemModel = [self.homeConfModel.middle_button objectAtIndex:2];
     [self clickItemWithModel:threeItemModel];
 }
@@ -239,19 +239,15 @@
     FBHomeConfItemModel *horModel = [self.homeConfModel.bottom_button objectAtIndex:sender.tag - 1];
     [self clickItemWithModel:horModel];
 
-//    if(sender.tag == 1){//参加学习
-//        FBJoinStudyController *vc = [[FBJoinStudyController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else if(sender.tag == 2){//阿姨招募
-//        FBAuntieRecruitmentController *vc = [[FBAuntieRecruitmentController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else if(sender.tag == 3){//清洗空调
-//        FBCleanAirController *vc = [[FBCleanAirController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else if(sender.tag == 4){//甲醛治理
-//        FBCleanAirController *vc = [[FBCleanAirController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    if(sender.tag == 1){
+        [FBUMManager event:@"bottom_button_1" attributes:@{}];
+    }else if(sender.tag == 2){
+        [FBUMManager event:@"bottom_button_2" attributes:@{}];
+    }else if(sender.tag == 3){
+        [FBUMManager event:@"bottom_button_3" attributes:@{}];
+    }else if(sender.tag == 4){
+        [FBUMManager event:@"bottom_button_4" attributes:@{}];
+    }
 }
 //点击去哪
 - (void)clickItemWithModel:(FBHomeConfItemModel *)itemModel
@@ -278,7 +274,7 @@
         }else{
             FBWebViewController *webvc = [[FBWebViewController alloc] init];
             webvc.navTitle = @"";
-            webvc.urlStr = @"";
+            webvc.urlStr = [FBHomeConfManager shareInstance].templateModel.template_page_1.url;
             [self.navigationController pushViewController:webvc animated:YES];
         }
     }else if([itemModel.shortcut_value isEqualToString:@"template_page_2"]){
@@ -688,6 +684,16 @@
     _viewBanner.clickImageBlock = ^(NSInteger currentIndex) {
         FBHomeConfItemModel *itemModel = [weakSelf.homeConfModel.banners objectAtIndex:currentIndex];
         [weakSelf clickItemWithModel:itemModel];
+        
+        if(currentIndex == 0){
+            [FBUMManager event:@"banner_button_1" attributes:@{}];
+        }else if(currentIndex == 1){
+            [FBUMManager event:@"banner_button_2" attributes:@{}];
+        }else if(currentIndex == 2){
+            [FBUMManager event:@"banner_button_3" attributes:@{}];
+        }else if(currentIndex == 3){
+            [FBUMManager event:@"banner_button_4" attributes:@{}];
+        }
     };
     
     return rootView;

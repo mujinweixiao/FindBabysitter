@@ -27,6 +27,13 @@
     [super viewWillAppear:animated];
     [_mapView viewWillAppear];
     [self dealDataToUI];
+    
+    if([FBHomeConfManager shareInstance].homeConfModel.menu_button.count == 2){
+        FBHomeConfItemModel *first = [[FBHomeConfManager shareInstance].homeConfModel.menu_button firstObject];
+        FBHomeConfItemModel *last = [[FBHomeConfManager shareInstance].homeConfModel.menu_button lastObject];
+
+        self.title = first.shortcut_title;
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -135,7 +142,7 @@
 #pragma mark - UI
 - (void)setupUI
 {
-    self.title = @"闪送";
+//    self.title = @"闪送";
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIButton *sureBtn = [[UIButton alloc] init];

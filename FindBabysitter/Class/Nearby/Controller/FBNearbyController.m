@@ -33,7 +33,17 @@
 @end
 
 @implementation FBNearbyController
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if([FBHomeConfManager shareInstance].homeConfModel.menu_button.count == 2){
+        FBHomeConfItemModel *first = [[FBHomeConfManager shareInstance].homeConfModel.menu_button firstObject];
+        FBHomeConfItemModel *last = [[FBHomeConfManager shareInstance].homeConfModel.menu_button lastObject];
 
+        self.title = last.shortcut_title;
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -96,6 +106,7 @@
     [dict setValue:extra_data.mj_JSONString forKey:@"extra_data"];
     
     [[FBHelper getCurrentController] showHudInView:[FBHelper getCurrentController].view hint:@""];
+    [FBUMManager event:@"template_page_button_2" attributes:@{}];
     [FBRequestData requestWithUrl:toSubmitForm_Url para:dict Complete:^(NSData * _Nonnull data) {
         [[FBHelper getCurrentController] hideHud];
         NSDictionary *registerDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -151,7 +162,7 @@
 #pragma mark - UI
 - (void)setupUI
 {
-    self.title = @"附近";
+//    self.title = @"附近";
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIScrollView *scrollView = [[UIScrollView alloc] init];

@@ -49,4 +49,5 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
 
 #import "FBNavigationController.h"
+#import "FBUMManager.h"
 #endif /* PrefixHeader_pch */

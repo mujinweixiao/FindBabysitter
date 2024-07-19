@@ -1,0 +1,76 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - BaiduMapKit/Base (6.6.2)
+  - BaiduMapKit/Map (6.6.2):
+    - BaiduMapKit/Base
+  - FLAnimatedImage (1.0.17)
+  - IQKeyboardManager (6.2.1)
+  - Masonry (1.1.0)
+  - MJExtension (3.4.2)
+  - MJRefresh (3.7.9)
+  - SDWebImage (5.15.4):
+    - SDWebImage/Core (= 5.15.4)
+  - SDWebImage/Core (5.15.4)
+  - UMCommon (7.4.6):
+    - UMDevice
+  - UMDevice (3.4.0)
+  - UMPush (4.1.1):
+    - UMCommon
+
+DEPENDENCIES:
+  - AFNetworking (= 3.2.1)
+  - BaiduMapKit/Map (= 6.6.2)
+  - FLAnimatedImage
+  - IQKeyboardManager (~> 6.2.0)
+  - Masonry (~> 1.1.0)
+  - MJExtension
+  - MJRefresh
+  - SDWebImage (= 5.15.4)
+  - UMCommon
+  - UMDevice
+  - UMPush
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - BaiduMapKit
+    - FLAnimatedImage
+    - IQKeyboardManager
+    - Masonry
+    - MJExtension
+    - MJRefresh
+    - SDWebImage
+    - UMCommon
+    - UMDevice
+    - UMPush
+
+SPEC CHECKSUMS:
+  AFNetworking: cb604b1c2bded0871f5f61f5d53653739e841d6b
+  BaiduMapKit: 4d550ad25eca16aa49586c736456984125b92d8a
+  FLAnimatedImage: bbf914596368867157cc71b38a8ec834b3eeb32b
+  IQKeyboardManager: 964638372b4a61892cc74fdfa6fd26de8c9464a2
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: e97d164cb411aa9795cf576093a1fa208b4a8dd8
+  MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
+  SDWebImage: 1c39de67663e5eebb2f41324d5d580eeea12dd4c
+  UMCommon: 9399105b64e099c3c66aad21fc85ae695567a1f1
+  UMDevice: dcdf7ec167387837559d149fbc7d793d984faf82
+  UMPush: 057de32a6766ece4b23f308e5951fe92ccf7da26
+
+PODFILE CHECKSUM: 5922fa62567318c2d2b14cc0bdb0bedb1773d49e
+
+COCOAPODS: 1.12.1

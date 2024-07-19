@@ -12,6 +12,10 @@
 //存储标识，设备第一次打开判断 无值代表第一次打开
 #define FBFirstOpen @"FBFirstOpen"
 
+/**  ------------------------------------------通知------------------------------------------   **/
+//配置接口请求成功
+#define NotHomeConfigRequestSuccess @"NotHomeConfigRequestSuccess"
+
 /**  ------------------------------------------三方key------------------------------------------   **/
 //阿里一键登录key
 #define PNSATAUTHSDKINFO @"QDOrmSn+XohBTMD3OO1hZs0vmceQl822GWBCdJB6KsRZF3bP7lANm/kHIEFv6GbCATm5fKNb1hOK9iSOu4TxAHLboykeUBRwO5zjGHBUJesVtJQihWBuhA7LtdFUYOEO9HlHV/NofL8zij0Ox/u3P1I7WlKklK75AS2hyZB3rbOQz8LuqUmg7RduKw2igipgv7+K37Cz+Clihh/j20bR9BJvUMddwayyuZVuJcf12INiCI2SAD0zIv9wtMVQOLYBO51GcmUjHAk="
