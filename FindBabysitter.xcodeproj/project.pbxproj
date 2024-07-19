@@ -1090,9 +1090,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindBabysitter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "云上保姆";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"找个保姆\"需要访问您的位置，更好的为您服务";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"找个保姆\"需要访问您的位置，更好的为您服务";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "”找个保姆“需要访问您的广告标识符，以便向您提供个性化的广告体验。";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"云上保姆\"需要访问您的位置，更好的为您服务";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"云上保姆\"需要访问您的位置，更好的为您服务";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1137,9 +1136,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindBabysitter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "云上保姆";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"找个保姆\"需要访问您的位置，更好的为您服务";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"找个保姆\"需要访问您的位置，更好的为您服务";
-				INFOPLIST_KEY_NSUserTrackingUsageDescription = "”找个保姆“需要访问您的广告标识符，以便向您提供个性化的广告体验。";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"云上保姆\"需要访问您的位置，更好的为您服务";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"云上保姆\"需要访问您的位置，更好的为您服务";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1153,7 +1151,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunshang.lucky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = pp_dis;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = pp_appstore;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
