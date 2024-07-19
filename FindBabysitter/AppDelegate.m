@@ -30,6 +30,8 @@
     [self setupUMWithOptions:launchOptions];
     //百度地图
     [self setupBaiduMap];
+    //监听网络状态
+    [self netChangeClick];
     
     return YES;
 }
@@ -318,5 +320,30 @@
         [[FBHelper getCurrentController] showHint:@"请求失败"];
     }];
 }
-
+#pragma mark - 网络状态改变
+- (void)netChangeClick
+{
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+        
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                NSLog(@"网络状态未知");
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                NSLog(@"无网络连接");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                NSLog(@"通过蜂窝数据网络连接");
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:NotNetLinkSuccess object:nil userInfo:nil]];
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                NSLog(@"通过 WiFi 网络连接");
+                [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:NotNetLinkSuccess object:nil userInfo:nil]];
+                break;
+            default:
+                break;
+        }
+    }];
+}
 @end

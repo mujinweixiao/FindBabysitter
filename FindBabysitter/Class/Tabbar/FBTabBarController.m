@@ -29,6 +29,10 @@
     //首页配置接口请求成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homeConfRequestSuccess:) name:NotHomeConfigRequestSuccess object:nil];
 }
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 //首页配置监听
 - (void)homeConfRequestSuccess:(NSNotification *)notification{
     if([FBHomeConfManager shareInstance].homeConfModel.menu_button.count == 2){
@@ -41,6 +45,7 @@
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             if(image){
+//                UIImage *resizedImage = [image sd_resizedImageWithSize:CGSizeMake(30, 30) scaleMode:SDImageScaleModeAspectFill];
                 self.flash.tabBarItem.image = image;
             }
         }];

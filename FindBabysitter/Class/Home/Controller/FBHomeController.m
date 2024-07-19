@@ -59,6 +59,21 @@
     [self requestTempData];
     [self requestConfData];
     [self requestToSubmitActiveData];
+    
+    
+    //首页配置接口请求成功
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netLinkSuccess:) name:NotNetLinkSuccess object:nil];
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+#pragma mark - not
+//网络连接成功
+- (void)netLinkSuccess:(NSNotification *)notification{
+    [self requestTempData];
+    [self requestConfData];
+    [self requestToSubmitActiveData];
 }
 #pragma mark - data
 - (void)requestTempData

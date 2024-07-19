@@ -15,6 +15,9 @@
 /**  ------------------------------------------通知------------------------------------------   **/
 //配置接口请求成功
 #define NotHomeConfigRequestSuccess @"NotHomeConfigRequestSuccess"
+//联网成功
+#define NotNetLinkSuccess @"NotNetLinkSuccess"
+
 
 /**  ------------------------------------------三方key------------------------------------------   **/
 //阿里一键登录key
