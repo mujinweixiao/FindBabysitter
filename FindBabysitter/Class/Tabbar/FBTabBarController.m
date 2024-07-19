@@ -78,10 +78,11 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     NSLog(@"Tabbar点击-begin");
-    if(viewController == self.nearby){
+    
+    if(tabBarController.selectedIndex == 1){
         [FBUMManager event:@"menu_button_1" attributes:@{}];
         NSLog(@"Tabbar点击-附近");
-    }else if (viewController == self.flash){
+    }else if (tabBarController.selectedIndex == 2){
         [FBUMManager event:@"menu_button_2" attributes:@{}];
         NSLog(@"Tabbar点击-闪送");
     }

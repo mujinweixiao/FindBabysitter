@@ -54,6 +54,7 @@
     // Do any additional setup after loading the view.
     self.fd_prefersNavigationBarHidden = YES;
     
+    
     [self setupUI];
     [self requestTempData];
     [self requestConfData];
