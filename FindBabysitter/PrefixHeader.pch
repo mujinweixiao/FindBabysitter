@@ -1,0 +1,52 @@
+//
+//  PrefixHeader.pch
+//  FindBabysitter
+//
+//  Created by 响  闫 on 2024/6/25.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/** 网络请求  (搬砖小弟) **/
+#import "AFNetworking.h"
+/** 布局  (搬砖小弟) **/
+#import "Masonry.h"
+/** 下拉刷新  (搬砖小弟) **/
+#import "MJRefresh.h"
+/** 图片加载  (搬砖小弟) **/
+#import <SDWebImage/UIImageView+WebCache.h>
+//动画侧滑，默认不需要引用默认所有界面都可使用，引用是用于某些界面需要隐藏导航栏
+#import "UINavigationController+FDFullscreenPopGesture.h"
+//有scrollview侧滑返回
+#import "FDDemoScrollView.h"
+
+#import "FBHeader.h"
+#import "UIColor+GBHexColor.h"
+#import "NSDictionary+Extension.h"
+#import "UIViewController+HUD.h"
+#import "FBRequestData.h"
+
+#import <ATAuthSDK_D/ATAuthSDK.h>
+#import "MJExtension.h"
+
+//友盟推送
+#import <UMCommon/UMConfigure.h>
+#import <UMCommon/UMCommon.h>
+#import <UMCommon/MobClick.h>
+#import <UMPush/UMessage.h>
+
+#import "FBApiHeader.h"
+#import "FBUserInfoModel.h"
+#import "FBHelper.h"
+#import "FBHomeConfManager.h"
+#import "FBWebViewController.h"
+#import "FBSubmitSuccessController.h"
+#import "AppDelegate.h"
+
+// 引入base相关所有的头文件
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
+
+#import "FBNavigationController.h"
+#endif /* PrefixHeader_pch */
