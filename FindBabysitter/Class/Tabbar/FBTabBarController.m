@@ -29,10 +29,6 @@
     //首页配置接口请求成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homeConfRequestSuccess:) name:NotHomeConfigRequestSuccess object:nil];
 }
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 //首页配置监听
 - (void)homeConfRequestSuccess:(NSNotification *)notification{
     if([FBHomeConfManager shareInstance].homeConfModel.menu_button.count == 2){
