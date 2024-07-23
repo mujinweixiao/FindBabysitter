@@ -278,6 +278,17 @@
             
         }else if(resultCode == 600014){//运营商维护升级，该功能已达最大调用次数
             
+        }else{//未知错误
+            //登录弹窗
+            FBLoginPopController *vc = [[FBLoginPopController alloc] init];
+            vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            FBNavigationController *nav = [[FBNavigationController alloc] initWithRootViewController:vc];
+            nav.view.backgroundColor = [UIColor clearColor];
+            nav.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            [nav.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+            nav.navigationBar.shadowImage = [UIImage new];
+            nav.navigationBar.translucent = YES;
+            [[FBHelper getCurrentController] presentViewController:nav animated:YES completion:nil];
         }
     }];
 }
