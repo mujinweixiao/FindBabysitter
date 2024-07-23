@@ -171,7 +171,7 @@
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(0);
         make.left.offset(0);
-        make.bottom.offset(0);
+        make.bottom.offset(-SafeAreaTabBarHeight);
         make.right.offset(0);
     }];
     
@@ -299,7 +299,7 @@
         make.right.offset(-16);
         make.height.offset(54);
         
-        make.bottom.offset(-20-SafeAreaBottomHeight);
+        make.bottom.offset(-20);
     }];
     
     CGFloat textWidth = 200;

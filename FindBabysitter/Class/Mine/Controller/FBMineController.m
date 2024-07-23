@@ -218,11 +218,11 @@
     
     UILabel *subtitleLab = [[UILabel alloc] init];
     subtitleLab.textColor = [UIColor colorWithHex:@"#16171A"];
-    subtitleLab.text = @"Hi~欢欢迎来到 找个保姆";
+    subtitleLab.text = @"Hi~欢迎来到云上保姆";
     subtitleLab.font = MediumFont(14);
     [rootView addSubview:subtitleLab];
     [subtitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(rootView.mas_centerY).offset(3);
+        make.top.equalTo(rootView.mas_centerY).offset(5);
         make.left.equalTo(titleLab);
     }];
     

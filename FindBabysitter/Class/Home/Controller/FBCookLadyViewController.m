@@ -341,7 +341,7 @@
         self.flavorTextField = textField;
     }else if(tag == 3){
         titleLab.text = @"您希望的阿姨上户时间";
-        textField.placeholder = @"请输入您喜欢的饭菜口味";
+        textField.placeholder = @"请输入阿姨上户时间";
         self.serviceTimeTextField = textField;
     }else if(tag == 4){
         titleLab.text = @"您的服务地址";
