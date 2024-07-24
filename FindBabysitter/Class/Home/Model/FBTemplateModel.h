@@ -11,6 +11,7 @@
 #import "FBTemplateThreeModel.h"
 #import "FBTemplateFourModel.h"
 #import "FBTemplateFiveModel.h"
+#import "FBTemplateSixModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FBTemplateModel : NSObject
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)FBTemplateThreeModel *template_page_3;
 @property(nonatomic,strong)FBTemplateFourModel *template_page_4;
 @property(nonatomic,strong)FBTemplateFiveModel *template_page_5;
+@property(nonatomic,strong)FBTemplateSixModel *template_page_6;
 
 @end
 

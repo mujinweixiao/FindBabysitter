@@ -171,7 +171,7 @@
     }];
     
     UILabel *titleLab = [[UILabel alloc] init];
-    titleLab.text = @"请填写您的预约信息";
+    titleLab.text = @"登录享受更多服务";
     titleLab.textColor = [UIColor colorWithHex:@"#16171A"];
     titleLab.font = BoldFont(16);
     [rootView addSubview:titleLab];

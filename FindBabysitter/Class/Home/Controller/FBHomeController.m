@@ -15,6 +15,7 @@
 #import "FBLoginPopController.h"//登录
 #import "FBHomeConfModel.h"//首页配置
 #import "FBTemplateModel.h"//模版
+#import "FBAuntieRecruitmentController.h"//阿姨招募
 @interface FBHomeController ()
 @property (nonatomic, strong) HW3DBannerView *viewBanner;
 @property(nonatomic,strong)FBHomeConfModel *homeConfModel;
@@ -278,49 +279,70 @@
     
     if([itemModel.shortcut_value isEqualToString:@"template_page_1"]){
         
-        if([FBHomeConfManager shareInstance].templateModel.template_page_1.is_login == 1){//需要登录
-            if([FBUserInfoModel shareInstance].token.length > 0){
-                FBCleanAirController *vc = [[FBCleanAirController alloc] init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }else{
-                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-
-                [appDelegate oneLittleItemBtnClick];
-            }
-        }else{
-            FBWebViewController *webvc = [[FBWebViewController alloc] init];
-            webvc.navTitle = @"";
-            webvc.urlStr = [FBHomeConfManager shareInstance].templateModel.template_page_1.url;
-            [self.navigationController pushViewController:webvc animated:YES];
-        }
+        FBCleanAirController *vc = [[FBCleanAirController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+//        if([FBHomeConfManager shareInstance].templateModel.template_page_1.is_login == 1){//需要登录
+//            if([FBUserInfoModel shareInstance].token.length > 0){
+//                FBCleanAirController *vc = [[FBCleanAirController alloc] init];
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }else{
+//                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//
+//                [appDelegate oneLittleItemBtnClick];
+//            }
+//        }else{
+//            FBWebViewController *webvc = [[FBWebViewController alloc] init];
+//            webvc.navTitle = @"";
+//            webvc.urlStr = [FBHomeConfManager shareInstance].templateModel.template_page_1.url;
+//            [self.navigationController pushViewController:webvc animated:YES];
+//        }
     }else if([itemModel.shortcut_value isEqualToString:@"template_page_2"]){
         
     }else if([itemModel.shortcut_value isEqualToString:@"template_page_3"]){
-        if([FBHomeConfManager shareInstance].templateModel.template_page_3.is_login == 1){//需要登录
-            if([FBUserInfoModel shareInstance].token.length > 0){
-                FBOnlineBabysitterController *vc = [[FBOnlineBabysitterController alloc] init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }else{
-                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                
-                [appDelegate oneLittleItemBtnClick];
-            }
-        }
+        FBOnlineBabysitterController *vc = [[FBOnlineBabysitterController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+//        if([FBHomeConfManager shareInstance].templateModel.template_page_3.is_login == 1){//需要登录
+//            if([FBUserInfoModel shareInstance].token.length > 0){
+//                FBOnlineBabysitterController *vc = [[FBOnlineBabysitterController alloc] init];
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }else{
+//                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//                
+//                [appDelegate oneLittleItemBtnClick];
+//            }
+//        }else{
+//            FBWebViewController *webvc = [[FBWebViewController alloc] init];
+//            webvc.navTitle = @"";
+//            webvc.urlStr = [FBHomeConfManager shareInstance].templateModel.template_page_1.url;
+//            [self.navigationController pushViewController:webvc animated:YES];
+//        }
     }else if([itemModel.shortcut_value isEqualToString:@"template_page_4"]){
-        if([FBHomeConfManager shareInstance].templateModel.template_page_4.is_login == 1){//需要登录
-            if([FBUserInfoModel shareInstance].token.length > 0){
-                FBCookLadyViewController *vc = [[FBCookLadyViewController alloc] init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }else{
-                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                
-                [appDelegate oneLittleItemBtnClick];
-            }
-        }
+        FBCookLadyViewController *vc = [[FBCookLadyViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+//        if([FBHomeConfManager shareInstance].templateModel.template_page_4.is_login == 1){//需要登录
+//            if([FBUserInfoModel shareInstance].token.length > 0){
+//                FBCookLadyViewController *vc = [[FBCookLadyViewController alloc] init];
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }else{
+//                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//                
+//                [appDelegate oneLittleItemBtnClick];
+//            }
+//        }else{
+//            FBWebViewController *webvc = [[FBWebViewController alloc] init];
+//            webvc.navTitle = @"";
+//            webvc.urlStr = [FBHomeConfManager shareInstance].templateModel.template_page_1.url;
+//            [self.navigationController pushViewController:webvc animated:YES];
+//        }
     }else if([itemModel.shortcut_value isEqualToString:@"template_page_5"]){
         
+    }else if([itemModel.shortcut_value isEqualToString:@"template_page_6"]){
+        FBAuntieRecruitmentController *vc = [[FBAuntieRecruitmentController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
-        
     }
 }
 #pragma mark - UI

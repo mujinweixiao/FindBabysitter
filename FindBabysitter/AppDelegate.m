@@ -108,8 +108,31 @@
     kUserInfoModel.deviceToken = hexToken;
     //1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
     //传入的devicetoken是系统回调didRegisterForRemoteNotificationsWithDeviceToken的入参，切记
-    [UMessage registerDeviceToken:deviceToken];
+//    [UMessage registerDeviceToken:deviceToken];
    
+}
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+    NSDictionary* userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]){
+    [UMessage setAutoAlert:NO];
+    //必须加这句代码
+    [UMessage didReceiveRemoteNotification:userInfo];
+
+    }else{
+    //应用处于前台时的本地推送接受
+    }
+    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
+}
+//iOS10新增：处理后台点击通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter*)center didReceiveNotificationResponse:(UNNotificationResponse*)response withCompletionHandler:(void(^)())completionHandler{
+    NSDictionary* userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]){
+    //必须加这句代码
+    [UMessage didReceiveRemoteNotification:userInfo];
+    }else{
+    //应用处于后台时的本地推送接受
+    }
 }
 #pragma mark - 登录部分
 - (void)oneLittleItemBtnClick

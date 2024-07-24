@@ -8,7 +8,9 @@
 #import "FBAuntieRecruitmentController.h"
 
 @interface FBAuntieRecruitmentController ()
-
+@property(nonatomic,strong)UILabel *oneTitleLab;
+@property(nonatomic,strong)UILabel *twoTitleLab;
+@property(nonatomic,strong)UITextField *phoneTextField;
 @end
 
 @implementation FBAuntieRecruitmentController
@@ -19,6 +21,53 @@
     self.fd_prefersNavigationBarHidden = YES;
     
     [self setupUI];
+    [self dealData];
+}
+
+#pragma mark - data
+- (void)dealData
+{
+    self.title = [FBHomeConfManager shareInstance].templateModel.template_page_6.title;
+    self.oneTitleLab.text = [FBHomeConfManager shareInstance].templateModel.template_page_6.form_title;
+    self.twoTitleLab.text = [FBHomeConfManager shareInstance].templateModel.template_page_6.form_desc;
+}
+- (void)requestSumitData
+{
+    NSMutableDictionary *extra_data = [[NSMutableDictionary alloc] init];
+    [extra_data setValue:self.phoneTextField.text forKey:@"mobile"];
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setValue:@"template_page_6" forKey:@"template_page"];
+    [dict setValue:extra_data.mj_JSONString forKey:@"extra_data"];
+    
+    [[FBHelper getCurrentController] showHudInView:[FBHelper getCurrentController].view hint:@""];
+    [FBUMManager event:@"template_page_button_6" attributes:@{}];
+    [FBRequestData requestWithUrl:toSubmitForm_Url para:dict Complete:^(NSData * _Nonnull data) {
+        [[FBHelper getCurrentController] hideHud];
+        NSDictionary *registerDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSString *code = [registerDic string:@"code"];
+        if([code isEqualToString:@"0"]){
+            [[FBHelper getCurrentController] showHint:@"提交成功"];
+            NSDictionary *data = [registerDic dictionary:@"data"];
+            NSString *url = [data string:@"url"];
+            if(url.length > 0){
+                FBWebViewController *vc = [[FBWebViewController alloc] init];
+                vc.urlStr = url;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                FBSubmitSuccessController *vc = [[FBSubmitSuccessController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }else{
+            NSString *msg = [registerDic string:@"msg"];
+            [[FBHelper getCurrentController] showHint:msg];
+        }
+        NSLog(@"");
+        
+    } fail:^(NSError * _Nonnull error) {
+        [[FBHelper getCurrentController] hideHud];
+        [[FBHelper getCurrentController] showHint:@"请求失败"];
+    }];
 }
 #pragma mark - click
 - (void)backBtnClick
@@ -27,7 +76,19 @@
 }
 - (void)sureBtnClick
 {
-    
+    if([FBHomeConfManager shareInstance].templateModel.template_page_6.is_login == 1){//需要登录
+        if([FBUserInfoModel shareInstance].token.length > 0){
+            [self requestSumitData];
+        }else{
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appDelegate oneLittleItemBtnClick];
+        }
+    }else{
+        FBWebViewController *webvc = [[FBWebViewController alloc] init];
+        webvc.navTitle = @"";
+        webvc.urlStr = [FBHomeConfManager shareInstance].templateModel.template_page_1.url;
+        [self.navigationController pushViewController:webvc animated:YES];
+    }
 }
 #pragma mark - UI
 - (void)setupUI
@@ -108,6 +169,7 @@
     titleLab.textColor = [UIColor colorWithHex:@"#4971FF"];
     titleLab.font = BoldFont(26);
     [rootView addSubview:titleLab];
+    self.oneTitleLab = titleLab;
     [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(25);
         make.left.offset(16);
@@ -118,6 +180,7 @@
     subtitleLab.textColor = [UIColor colorWithHex:@"#666A77"];
     subtitleLab.font = MediumFont(16);
     [rootView addSubview:subtitleLab];
+    self.twoTitleLab = subtitleLab;
     [subtitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(titleLab.mas_bottom).offset(5);
         make.left.offset(16);
@@ -144,6 +207,7 @@
     phoneTextField.leftViewMode = UITextFieldViewModeAlways;
     phoneTextField.font = MediumFont(12);
     [rootView addSubview:phoneTextField];
+    self.phoneTextField = phoneTextField;
     [phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(subtitleLab.mas_bottom).offset(15);
         make.left.offset(17);

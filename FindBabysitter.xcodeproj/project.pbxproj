@@ -88,6 +88,7 @@
 		A8B06FAB2C3B806000319F53 /* FBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B06FA92C3B806000319F53 /* FBHelper.m */; };
 		A8B06FAF2C3B8A7C00319F53 /* FBHomeConfManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B06FAE2C3B8A7B00319F53 /* FBHomeConfManager.m */; };
 		A8B06FB22C3BAB4000319F53 /* FBLoginPopController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B06FB12C3BAB4000319F53 /* FBLoginPopController.m */; };
+		A8C16EB22C50F50B00CB5F4F /* FBTemplateSixModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C16EB12C50F50B00CB5F4F /* FBTemplateSixModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -267,6 +268,8 @@
 		A8B06FAE2C3B8A7B00319F53 /* FBHomeConfManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBHomeConfManager.m; sourceTree = "<group>"; };
 		A8B06FB02C3BAB4000319F53 /* FBLoginPopController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBLoginPopController.h; sourceTree = "<group>"; };
 		A8B06FB12C3BAB4000319F53 /* FBLoginPopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBLoginPopController.m; sourceTree = "<group>"; };
+		A8C16EB02C50F50B00CB5F4F /* FBTemplateSixModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBTemplateSixModel.h; sourceTree = "<group>"; };
+		A8C16EB12C50F50B00CB5F4F /* FBTemplateSixModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBTemplateSixModel.m; sourceTree = "<group>"; };
 		C0D737F5C7E30DDBB09BEFEA /* Pods-FindBabysitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindBabysitter.release.xcconfig"; path = "Target Support Files/Pods-FindBabysitter/Pods-FindBabysitter.release.xcconfig"; sourceTree = "<group>"; };
 		C8AE216D34394DFD788556B6 /* Pods_FindBabysitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindBabysitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -429,6 +432,8 @@
 				A847A57C2C3787C5007CA612 /* FBTemplateFourModel.m */,
 				A8B06FA02C3B7A7B00319F53 /* FBTemplateFiveModel.h */,
 				A8B06FA12C3B7A7B00319F53 /* FBTemplateFiveModel.m */,
+				A8C16EB02C50F50B00CB5F4F /* FBTemplateSixModel.h */,
+				A8C16EB12C50F50B00CB5F4F /* FBTemplateSixModel.m */,
 				A8B06FA32C3B7BEF00319F53 /* FBHomeConfModel.h */,
 				A8B06FA42C3B7BEF00319F53 /* FBHomeConfModel.m */,
 			);
@@ -915,6 +920,7 @@
 				A847A4DE2C32B5A8007CA612 /* FBCookLadyViewController.m in Sources */,
 				A847A4E72C3399DD007CA612 /* FBJoinStudyController.m in Sources */,
 				A8A9D70C2C3298F8009042E1 /* FBAuntieRecruitmentController.m in Sources */,
+				A8C16EB22C50F50B00CB5F4F /* FBTemplateSixModel.m in Sources */,
 				A847A54F2C353E7F007CA612 /* YYTextUtilities.m in Sources */,
 				A847A5552C353E7F007CA612 /* YYTextAsyncLayer.m in Sources */,
 				A8A9D6E92C323E9C009042E1 /* UIColor+GBHexColor.m in Sources */,

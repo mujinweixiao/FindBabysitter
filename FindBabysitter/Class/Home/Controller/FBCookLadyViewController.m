@@ -83,7 +83,19 @@
 #pragma mark - click
 - (void)sureBtnClick
 {
-    [self requestSumitData];
+    if([FBHomeConfManager shareInstance].templateModel.template_page_4.is_login == 1){//需要登录
+        if([FBUserInfoModel shareInstance].token.length > 0){
+            [self requestSumitData];
+        }else{
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appDelegate oneLittleItemBtnClick];
+        }
+    }else{
+        FBWebViewController *webvc = [[FBWebViewController alloc] init];
+        webvc.navTitle = @"";
+        webvc.urlStr = [FBHomeConfManager shareInstance].templateModel.template_page_1.url;
+        [self.navigationController pushViewController:webvc animated:YES];
+    }
 }
 #pragma mark - UI
 - (void)setupUI
