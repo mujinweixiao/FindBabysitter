@@ -61,7 +61,7 @@
     FBTemplateFiveTypeModel *selectItemModel;
     for (int i = 0; i < self.fiveModel.variety_types.count; i ++) {
         FBTemplateFiveTypeModel *itemModel = [self.fiveModel.variety_types objectAtIndex:i];
-        if(itemModel.isSelect){
+        if(itemModel.is_default == 1){
             selectItemModel = itemModel;
         }
     }
@@ -87,7 +87,7 @@
     cell.titleLab.text = model.title;
     cell.subtitleLab.text = model.desc;
     //img_select_blue img_select_gray
-    if(model.isSelect){
+    if(model.is_default == 1){
         cell.rootView.backgroundColor = [UIColor colorWithHex:@"#F3F7FB"];
         cell.selectImgView.image = [UIImage imageNamed:@"img_select_blue"];
     }else{
@@ -101,9 +101,9 @@
     for (int i = 0; i < self.fiveModel.variety_types.count; i ++) {
         FBTemplateFiveTypeModel *itemModel = [self.fiveModel.variety_types objectAtIndex:i];
         if(i == indexPath.row){
-            itemModel.isSelect = YES;
+            itemModel.is_default = 1;
         }else{
-            itemModel.isSelect = NO;
+            itemModel.is_default = 2;
         }
     }
     [self.mainTableView reloadData];

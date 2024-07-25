@@ -90,7 +90,8 @@
     [extra_data setValue:self.addressPopView.contentTextField.text forKey:@"receive_address"];
     [extra_data setValue:self.addressPopView.wechatTextField.text forKey:@"wechat_number"];
     [extra_data setValue:self.addressPopView.contentTextField.text forKey:@"remarks"];
-    
+    [extra_data setValue:self.selectItemModel.title forKey:@"variety_type"];
+
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setValue:@"template_page_5" forKey:@"template_page"];
     [dict setValue:extra_data.mj_JSONString forKey:@"extra_data"];

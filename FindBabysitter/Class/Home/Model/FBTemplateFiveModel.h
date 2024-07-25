@@ -20,10 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *title;
 ///
 @property(nonatomic,copy)NSString *desc;
-///
-@property(nonatomic,copy)NSString *is_default;
+///1:默认选中 2：未选择
+@property(nonatomic,assign)int is_default;
 ///选中状态
-@property(nonatomic,assign)BOOL isSelect;
+//@property(nonatomic,assign)BOOL isSelect;
 @end
 
 @interface FBTemplateFiveModel : NSObject

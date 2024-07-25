@@ -22,7 +22,7 @@
 #pragma mark - click
 - (void)sureBtnClick
 {
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 #pragma mark - UI
 - (void)setupUI
