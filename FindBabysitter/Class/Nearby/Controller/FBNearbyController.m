@@ -472,6 +472,7 @@
     textField.textAlignment = NSTextAlignmentRight;
     textField.placeholder = @"请填写联系人姓名";
     [rootView addSubview:textField];
+    self.nameTextField = textField;
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(0);
         make.left.offset(150);

@@ -59,7 +59,7 @@ static NSString *const FBUserInfoModel_deviceToken         = @"deviceToken";
     kUserInfoModel.nickname           = @"";
     kUserInfoModel.head_img           = @"";
     kUserInfoModel.mobile           = @"";
-    kUserInfoModel.deviceToken           = @"";
+//    kUserInfoModel.deviceToken           = @"";
 
 }
 
