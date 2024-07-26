@@ -280,6 +280,7 @@
     if([itemModel.shortcut_value isEqualToString:@"template_page_1"]){
         
         FBCleanAirController *vc = [[FBCleanAirController alloc] init];
+        vc.type = 1;
         [self.navigationController pushViewController:vc animated:YES];
         
 //        if([FBHomeConfManager shareInstance].templateModel.template_page_1.is_login == 1){//需要登录
@@ -342,7 +343,12 @@
     }else if([itemModel.shortcut_value isEqualToString:@"template_page_6"]){
         FBAuntieRecruitmentController *vc = [[FBAuntieRecruitmentController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else{
+    }else if([itemModel.shortcut_value isEqualToString:@"template_page_7"]){//
+        FBCleanAirController *vc = [[FBCleanAirController alloc] init];
+        vc.type = 2;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
     }
 }
 #pragma mark - UI

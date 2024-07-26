@@ -36,7 +36,12 @@
 #pragma mark - priv
 - (void)dealDataToUI
 {
-    FBTemplateOneModel *model = [FBHomeConfManager shareInstance].templateModel.template_page_1;
+    FBTemplateOneModel *model;
+    if(self.type == 1){
+        model = [FBHomeConfManager shareInstance].templateModel.template_page_1;
+    }else{
+        model = [FBHomeConfManager shareInstance].templateModel.template_page_7;
+    }
     self.title = model.title;
     [self.topImgView sd_setImageWithURL:[NSURL URLWithString:model.banner]];
     self.twoContentLab.text = model.cost_desc;
@@ -47,7 +52,7 @@
 #pragma mark - UI
 - (void)setupUI
 {
-    self.title = @"清洗空调/甲醛治理";
+    self.title = @"";
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIScrollView *scrollView = [[UIScrollView alloc] init];
@@ -205,6 +210,7 @@
     
     FBAppointmentPopView *appointmentPopView = [[FBAppointmentPopView alloc] init];
     appointmentPopView.hidden = YES;
+    appointmentPopView.type = self.type;
     [self.view addSubview:appointmentPopView];
     self.appointmentPopView = appointmentPopView;
     [appointmentPopView mas_makeConstraints:^(MASConstraintMaker *make) {

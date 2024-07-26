@@ -42,7 +42,7 @@
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             if(image){
 //                UIImage *resizedImage = [image sd_resizedImageWithSize:CGSizeMake(30, 30) scaleMode:SDImageScaleModeAspectFill];
-                self.flash.tabBarItem.image = image;
+                self.flash.tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             }
         }];
         [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:first.shortcut_icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
@@ -59,7 +59,7 @@
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             if(image){
-                self.nearby.tabBarItem.image = image;
+                self.nearby.tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             }
         }];
         [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:last.shortcut_icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
@@ -144,9 +144,10 @@
 - (void)setupOneChildViewController:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage{
     
     vc.title = title;
+    UIImage *imageOne =[UIImage imageNamed:image];
     UIImage *imageSele =[UIImage imageNamed:selectedImage];
     if (image.length) {
-        vc.tabBarItem.image = [UIImage imageNamed:image];
+        vc.tabBarItem.image = [imageOne imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         vc.tabBarItem.selectedImage = [imageSele imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     FBNavigationController *nav = [[FBNavigationController alloc] initWithRootViewController:vc];

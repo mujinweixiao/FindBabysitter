@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FBCleanAirController : UIViewController
-
+//1:空调清洗 2：甲醛治理
+@property(nonatomic,assign)int type;
 @end
 
 NS_ASSUME_NONNULL_END

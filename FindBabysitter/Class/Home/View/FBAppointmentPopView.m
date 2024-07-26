@@ -39,11 +39,17 @@
     [extra_data setValue:self.timeTextField.text forKey:@"service_time"];
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setValue:@"template_page_1" forKey:@"template_page"];
     [dict setValue:extra_data.mj_JSONString forKey:@"extra_data"];
     
     [[FBHelper getCurrentController] showHudInView:[FBHelper getCurrentController].view hint:@""];
-    [FBUMManager event:@"template_page_button_1" attributes:@{}];
+    if(self.type == 1){
+        [dict setValue:@"template_page_1" forKey:@"template_page"];
+        [FBUMManager event:@"template_page_button_1" attributes:@{}];
+    }else{
+        [dict setValue:@"template_page_7" forKey:@"template_page"];
+        [FBUMManager event:@"template_page_button_7" attributes:@{}];
+    }
+    
     [FBRequestData requestWithUrl:toSubmitForm_Url para:dict Complete:^(NSData * _Nonnull data) {
         [[FBHelper getCurrentController] hideHud];
         NSDictionary *registerDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -230,11 +236,11 @@
         self.mobileTextField = textField;
     }else if(tag == 3){
         titleLab.text = @"服务地址";
-        textField.placeholder = @"请选择服务地址";
+        textField.placeholder = @"请填写服务地址";
         self.serviceAddressTextField = textField;
     }else if(tag == 4){
         titleLab.text = @"上门时间";
-        textField.placeholder = @"请选择上门时间";
+        textField.placeholder = @"请输入上门时间";
         self.timeTextField = textField;
     }
     

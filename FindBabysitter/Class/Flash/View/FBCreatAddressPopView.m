@@ -177,8 +177,8 @@
         textField.placeholder = @"请填写联系人微信号（选填）";
         self.wechatTextField = textField;
     }else if(tag == 4){
-        titleLab.text = @"补充说明";
-        textField.placeholder = @"请填写补充说明（选填）";
+        titleLab.text = @"收货地址";
+        textField.placeholder = @"请填写详细的收货地址";
         self.contentTextField = textField;
     }
     

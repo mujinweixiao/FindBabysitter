@@ -357,7 +357,7 @@
         self.serviceTimeTextField = textField;
     }else if(tag == 4){
         titleLab.text = @"您的服务地址";
-        textField.placeholder = @"请选择服务地址";
+        textField.placeholder = @"请填写服务地址";
         self.serviceAddressTextField = textField;
     }
     

@@ -176,7 +176,7 @@
     model.sloganText = [[NSAttributedString alloc] initWithString:@"找个保姆" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithHex:@"#16171A"],NSFontAttributeName : [UIFont systemFontOfSize:16.0]}];
     model.numberColor = [UIColor colorWithHex:@"#16171A"];
     model.numberFont = [UIFont systemFontOfSize:30.0];
-    model.loginBtnText = [[NSAttributedString alloc] initWithString:@"一键登录" attributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
+    model.loginBtnText = [[NSAttributedString alloc] initWithString:@"请先同意用户协议再一键登录" attributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:16]}];
     //model.autoHideLoginLoading = NO;
     model.privacyOne = @[@"《用户协议》",ServeAgreement];
     model.privacyTwo = @[@"《隐私政策》",PrivacyAgreement];
@@ -192,6 +192,7 @@
     model.checkBoxImages = @[[UIImage imageNamed:@"img_circle_noselect"],[UIImage imageNamed:@"img_agreement_select"]];
     model.checkBoxWH = 17.0;
     model.changeBtnTitle = [[NSAttributedString alloc] initWithString:@"其他方式登录" attributes:@{NSForegroundColorAttributeName : [UIColor colorWithHex:@"#16171A"],NSFontAttributeName : [UIFont systemFontOfSize:16.0]}];
+    model.checkBoxIsChecked = NO;
     //model.changeBtnIsHidden = NO;
     //model.prefersStatusBarHidden = NO;
     model.preferredStatusBarStyle = UIStatusBarStyleLightContent;
