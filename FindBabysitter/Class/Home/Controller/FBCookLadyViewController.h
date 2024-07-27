@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FBCookLadyViewController : UIViewController
-
+///模版4  模版8
+@property(nonatomic,assign)int type;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -41,11 +41,18 @@
     [extra_data setValue:self.serviceAddressTextField.text forKey:@"service_address"];
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setValue:@"template_page_4" forKey:@"template_page"];
     [dict setValue:extra_data.mj_JSONString forKey:@"extra_data"];
     
     [[FBHelper getCurrentController] showHudInView:[FBHelper getCurrentController].view hint:@""];
-    [FBUMManager event:@"template_page_button_4" attributes:@{}];
+    
+    if(self.type == 4){
+        [dict setValue:@"template_page_4" forKey:@"template_page"];
+        [FBUMManager event:@"template_page_button_4" attributes:@{}];
+    }else{
+        [dict setValue:@"template_page_8" forKey:@"template_page"];
+        [FBUMManager event:@"template_page_button_8" attributes:@{}];
+    }
+    
     [FBRequestData requestWithUrl:toSubmitForm_Url para:dict Complete:^(NSData * _Nonnull data) {
         [[FBHelper getCurrentController] hideHud];
         NSDictionary *registerDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -77,6 +84,9 @@
 - (void)dealDataToUI
 {
     FBTemplateFourModel *model = [FBHomeConfManager shareInstance].templateModel.template_page_4;
+    if(self.type == 8){
+        model = [FBHomeConfManager shareInstance].templateModel.template_page_8;
+    }
     self.title = model.title;
     self.subtitleLab.text = model.form_title;
 }

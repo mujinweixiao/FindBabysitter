@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)FBTemplateFiveModel *template_page_5;
 @property(nonatomic,strong)FBTemplateSixModel *template_page_6;
 @property(nonatomic,strong)FBTemplateOneModel *template_page_7;
+@property(nonatomic,strong)FBTemplateFourModel *template_page_8;
 
 @end
 
