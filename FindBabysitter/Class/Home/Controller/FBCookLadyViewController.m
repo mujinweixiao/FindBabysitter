@@ -224,6 +224,11 @@
         make.bottom.offset(-20-SafeAreaBottomHeight);
     }];
     
+    if(self.type == 8){
+        titleLab.text = @"帮我找找育儿阿姨";
+        [sureBtn setTitle:@"帮我找育儿阿姨" forState:UIControlStateNormal];
+    }
+    
     CGFloat textWidth = 152;
     CGFloat sureWidth = KScreenW - 16*2.0;
     CGFloat textLeft = (sureWidth - textWidth)/2.0;
@@ -358,8 +363,13 @@
         textField.placeholder = @"请输入阿姨工作时长";
         self.serviceDurationTextField = textField;
     }else if(tag == 2){
-        titleLab.text = @"您喜欢的饭菜口味";
-        textField.placeholder = @"请输入您喜欢的饭菜口味";
+        if(self.type == 8){
+            titleLab.text = @"孩子的年龄段";
+            textField.placeholder = @"请输入您家孩子的年龄段";
+        }else{
+            titleLab.text = @"您喜欢的饭菜口味";
+            textField.placeholder = @"请输入您喜欢的饭菜口味";
+        }
         self.flavorTextField = textField;
     }else if(tag == 3){
         titleLab.text = @"您希望的阿姨上户时间";

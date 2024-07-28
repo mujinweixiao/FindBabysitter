@@ -32,9 +32,9 @@ static AFHTTPSessionManager *manager;
 //        @"clientIP":ipAddressStr,// ip地址
         @"Authorization":Authorization,// 用户token
         @"uuid":[FBHelper iOSUUID],// 用户token
-        @"os_version":[FBHelper getAppVersion],// 用户token
-        @"os_system":@"iOS",// 用户token
-        @"os_model":[FBHelper iphoneType],// 用户token
+        @"os-version":[FBHelper getAppVersion],// 用户token
+        @"os-system":[NSString stringWithFormat:@"iOS %@",[FBHelper iOSVersion]],// 用户token
+        @"os-model":[FBHelper iphoneType],// 用户token
 //        @"packageID":[AppHelper getAppBundleId],// 包名
 //        @"from-type":@"3",// iOS访问
 //        @"iOSVersion":[AppHelper iOSVersion],// 操作系统版本号
