@@ -8,14 +8,16 @@
 #import "FBFlashController.h"
 #import "FBFlashCell.h"
 #import "FBDistributionController.h"
-@interface FBFlashController ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate>
+@interface FBFlashController ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,BMKLocationManagerDelegate>
 @property(nonatomic,strong)UITableView *mainTableView;
 @property(nonatomic,strong)UIView *headerView;
 @property(nonatomic,strong)UIView *footerView;
 @property(nonatomic,strong)UILabel *supportAreaTitleLab;
 @property(nonatomic,strong)UILabel *supportSubTitleLab;
-@property(nonatomic,strong)BMKMapView *mapView;
 
+@property(nonatomic,strong)BMKMapView *mapView;
+@property (nonatomic, strong) BMKLocationManager *locationManager; //定位对象
+@property (nonatomic, strong) BMKUserLocation *userLocation; //当前位置对象
 
 
 @property(nonatomic,strong)FBTemplateFiveModel *fiveModel;
@@ -243,16 +245,124 @@
         make.bottom.offset(-30);
     }];
     
-    // 请求定位权限
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-    [locationManager requestWhenInUseAuthorization];
-
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, KScreenW - 60, 227 - 50)];
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
-    _mapView.userTrackingMode = BMKUserTrackingModeFollowWithHeading;
+//    _mapView.userTrackingMode = BMKUserTrackingModeFollowWithHeading;
+    _mapView.zoomLevel = 15;
     [mapTotalView addSubview:_mapView];
+    
+    //开启定位服务
+    //连续定位
+//    [self.locationManager startUpdatingLocation];
+    //单次定位
+    [self.locationManager requestLocationWithReGeocode:NO withNetworkState:NO completionBlock:^(BMKLocation * _Nullable location, BMKLocationNetworkState state, NSError * _Nullable error) {
+        if(error == nil){
+            self.userLocation.location = location.location;
+            
+            //实现该方法，否则定位图标不出现
+            [self.mapView updateLocationData:self.userLocation];
+            [self.mapView setCenterCoordinate:location.location.coordinate];
+        }
+    }];
+    [self.locationManager startUpdatingHeading];
+    //显示定位图层
+    _mapView.showsUserLocation = YES;
     
     return rootView;
 }
+#pragma mark - BMKLocationManagerDelegate
+/**
+ @brief 当定位发生错误时，会调用代理的此方法
+ @param manager 定位 BMKLocationManager 类
+ @param error 返回的错误，参考 CLError
+ */
+- (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error {
+    NSLog(@"定位失败");
+}
+
+/**
+ @brief 该方法为BMKLocationManager提供设备朝向的回调方法
+ @param manager 提供该定位结果的BMKLocationManager类的实例
+ @param heading 设备的朝向结果
+ */
+- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateHeading:(CLHeading *)heading {
+    if (!heading) {
+        return;
+    }
+    NSLog(@"用户方向更新");
+    
+    self.userLocation.heading = heading;
+    [_mapView updateLocationData:self.userLocation];
+}
+
+/**
+ @brief 连续定位回调函数
+ @param manager 定位 BMKLocationManager 类
+ @param location 定位结果，参考BMKLocation
+ @param error 错误信息。
+ */
+- (void)BMKLocationManager:(BMKLocationManager *)manager didUpdateLocation:(BMKLocation *)location orError:(NSError *)error {
+    if (error) {
+        NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+    }
+    if (!location) {
+        return;
+    }
+    
+    self.userLocation.location = location.location;
+    
+    //实现该方法，否则定位图标不出现
+    [_mapView updateLocationData:self.userLocation];
+}
+
+/**
+ *  @brief 为了适配app store关于新的后台定位的审核机制（app store要求如果开发者只配置了使用期间定位，则代码中不能出现申请后台定位的逻辑），当开发者在plist配置NSLocationAlwaysUsageDescription或者NSLocationAlwaysAndWhenInUseUsageDescription时，需要在该delegate中调用后台定位api：[locationManager requestAlwaysAuthorization]。开发者如果只配置了NSLocationWhenInUseUsageDescription，且只有使用期间的定位需求，则无需在delegate中实现逻辑。
+ *  @param manager 定位 BMKLocationManager 类。
+ *  @param locationManager 系统 CLLocationManager 类 。
+ *  @since 1.6.0
+ */
+- (void)BMKLocationManager:(BMKLocationManager * _Nonnull)manager doRequestAlwaysAuthorization:(CLLocationManager * _Nonnull)locationManager {
+    [locationManager requestAlwaysAuthorization];
+}
+
+#pragma mark - Lazy loading
+- (BMKLocationManager *)locationManager {
+    if (!_locationManager) {
+        //初始化BMKLocationManager类的实例
+        _locationManager = [[BMKLocationManager alloc] init];
+        //设置定位管理类实例的代理
+        _locationManager.delegate = self;
+        //设定定位坐标系类型，默认为 BMKLocationCoordinateTypeGCJ02
+        _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+        //设定定位精度，默认为 kCLLocationAccuracyBest
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        //设定定位类型，默认为 CLActivityTypeAutomotiveNavigation
+        _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+        //指定定位是否会被系统自动暂停，默认为NO
+        _locationManager.pausesLocationUpdatesAutomatically = NO;
+        /**
+         是否允许后台定位，默认为NO。只在iOS 9.0及之后起作用。
+         设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。
+         由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
+         */
+        _locationManager.allowsBackgroundLocationUpdates = NO;
+        /**
+         指定单次定位超时时间,默认为10s，最小值是2s。注意单次定位请求前设置。
+         注意: 单次定位超时时间从确定了定位权限(非kCLAuthorizationStatusNotDetermined状态)
+         后开始计算。
+         */
+        _locationManager.locationTimeout = 10;
+    }
+    return _locationManager;
+}
+
+- (BMKUserLocation *)userLocation {
+    if (!_userLocation) {
+        //初始化BMKUserLocation类的实例
+        _userLocation = [[BMKUserLocation alloc] init];
+    }
+    return _userLocation;
+}
+
 @end

@@ -24,5 +24,6 @@ target 'FindBabysitter' do
   #必选，推送组件，由原来的UMCPush变为UMPush
   pod 'UMPush'
   pod 'BaiduMapKit/Map', '6.6.2'    # 集成地图Map包
-  pod 'BMKLocationKit'， '2.1.2'
+  pod 'BMKLocationKit'
+
 end

@@ -17,6 +17,7 @@ PODS:
   - BaiduMapKit/Base (6.6.2)
   - BaiduMapKit/Map (6.6.2):
     - BaiduMapKit/Base
+  - BMKLocationKit (2.1.1)
   - FLAnimatedImage (1.0.17)
   - IQKeyboardManager (6.2.1)
   - Masonry (1.1.0)
@@ -34,6 +35,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 3.2.1)
   - BaiduMapKit/Map (= 6.6.2)
+  - BMKLocationKit
   - FLAnimatedImage
   - IQKeyboardManager (~> 6.2.0)
   - Masonry (~> 1.1.0)
@@ -48,6 +50,7 @@ SPEC REPOS:
   trunk:
     - AFNetworking
     - BaiduMapKit
+    - BMKLocationKit
     - FLAnimatedImage
     - IQKeyboardManager
     - Masonry
@@ -61,6 +64,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: cb604b1c2bded0871f5f61f5d53653739e841d6b
   BaiduMapKit: 4d550ad25eca16aa49586c736456984125b92d8a
+  BMKLocationKit: 32a981ceb683790f732e5df3ab1f25652557a5b1
   FLAnimatedImage: bbf914596368867157cc71b38a8ec834b3eeb32b
   IQKeyboardManager: 964638372b4a61892cc74fdfa6fd26de8c9464a2
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -71,6 +75,6 @@ SPEC CHECKSUMS:
   UMDevice: dcdf7ec167387837559d149fbc7d793d984faf82
   UMPush: 057de32a6766ece4b23f308e5951fe92ccf7da26
 
-PODFILE CHECKSUM: 5922fa62567318c2d2b14cc0bdb0bedb1773d49e
+PODFILE CHECKSUM: 1115583b466a6c3be19e23fb17f2f063c951276c
 
 COCOAPODS: 1.12.1

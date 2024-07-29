@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 #import "FBTabBarController.h"
 #import "FBLoginPopController.h"
-@interface AppDelegate ()<UNUserNotificationCenterDelegate>
+@interface AppDelegate ()<UNUserNotificationCenterDelegate,BMKLocationAuthDelegate>
 
 @end
 
@@ -46,18 +46,17 @@
         NSLog(@"启动引擎失败");
     }
     
-    /**
-      百度地图SDK所有API均支持百度坐标（BD09）和国测局坐标（GCJ02），用此方法设置您使用的坐标类型.
-      默认是BD09（BMK_COORDTYPE_BD09LL）坐标.
-      如果需要使用GCJ02坐标，需要设置CoordinateType为：BMK_COORDTYPE_COMMON.
-      */
-    if ([BMKMapManager setCoordinateTypeUsedInBaiduMapSDK: BMK_COORDTYPE_COMMON]) {
-        NSLog(@"经纬度类型设置成功");
-    } else {
-        NSLog(@"经纬度类型设置失败");
-    }
+    [[BMKLocationAuth sharedInstance] checkPermisionWithKey:BaiDuMapKey authDelegate:self];
+    
+    // 定位SDK隐私权限授权
+    [[BMKLocationAuth sharedInstance] setAgreePrivacy:YES];
+    // 地图SDK隐私权限授权
+    [BMKMapManager setAgreePrivacy:YES];
 }
-
+- (void)onCheckPermissionState:(BMKLocationAuthErrorCode)iError
+{
+    NSLog(@"");
+}
 #pragma mark - 一键登录
 - (void)setupOneClickLogin
 {
