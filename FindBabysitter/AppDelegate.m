@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "FBTabBarController.h"
 #import "FBLoginPopController.h"
+#import "IQKeyboardManager.h"
 @interface AppDelegate ()<UNUserNotificationCenterDelegate,BMKLocationAuthDelegate>
 
 @end
@@ -32,6 +33,8 @@
     [self setupBaiduMap];
     //监听网络状态
     [self netChangeClick];
+    // 配置 IQKeyboardManager
+    [IQKeyboardManager sharedManager].toolbarDoneBarButtonItemText = @"完成";
     
     return YES;
 }
