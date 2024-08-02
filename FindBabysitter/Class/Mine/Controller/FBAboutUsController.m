@@ -91,7 +91,18 @@
 #pragma mark - click
 - (void)cancelAccountBtnClick
 {
-    [self requestDeleteUserData];
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"提示" message:@"账号注销后将删除有关您账号的一切信息，确认操作？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self requestDeleteUserData];
+    }];
+    [alertC addAction:cancelAction];
+    [alertC addAction:sureAction];
+    [self presentViewController:alertC animated:YES completion:^{
+        
+    }];
 }
 - (void)agreementBtnClick
 {
