@@ -1096,8 +1096,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindBabysitter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "云上保姆";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"云上保姆\"需要访问您的位置，更好的为您服务";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"云上保姆\"需要访问您的位置，更好的为您服务";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"云上保姆\"需要访问您的位置，以便于更精确的为您配送";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"云上保姆\"需要访问您的位置，以便于更精确的为您配送";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1142,8 +1142,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindBabysitter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "云上保姆";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"云上保姆\"需要访问您的位置，更好的为您服务";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"云上保姆\"需要访问您的位置，更好的为您服务";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"云上保姆\"需要访问您的位置，以便于更精确的为您配送";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"云上保姆\"需要访问您的位置，以便于更精确的为您配送";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
