@@ -16,7 +16,8 @@
 #import "FBHomeConfModel.h"//首页配置
 #import "FBTemplateModel.h"//模版
 #import "FBAuntieRecruitmentController.h"//阿姨招募
-@interface FBHomeController ()
+#import "FBHomeAdPopView.h"//广告弹窗
+@interface FBHomeController ()<FBHomeAdPopViewDelegate>
 @property (nonatomic, strong) HW3DBannerView *viewBanner;
 @property(nonatomic,strong)FBHomeConfModel *homeConfModel;
 
@@ -44,7 +45,8 @@
 @property(nonatomic,strong)UILabel *horFourTitleLab;
 @property(nonatomic,strong)UIImageView *horFourImgView;
 
-
+//广告弹窗
+@property(nonatomic,strong)FBHomeAdPopView *adPopView;
 
 @end
 
@@ -179,6 +181,13 @@
     }
     _viewBanner.data = imgArray;
     
+    //弹窗
+    if(homeConfModel.alter_button.count > 0){
+        self.adPopView.hidden = NO;
+        FBHomeConfItemModel *item = [homeConfModel.alter_button firstObject];
+        [self.adPopView.backgroundImgView sd_setImageWithURL:[NSURL URLWithString:item.shortcut_icon]];
+    }
+    
 }
 #pragma mark - 应用第一次安装
 //应用第一次安装调用
@@ -196,6 +205,7 @@
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setValue:[FBHelper iOSUUID] forKey:@"uuid"];
+    [dict setValue:[FBHelper getIdfa] forKey:@"idfa"];
     [dict setValue:[FBHelper getAppVersion] forKey:@"os_version"];
     [dict setValue:@"iOS" forKey:@"os_system"];
     [dict setValue:[FBHelper iphoneType] forKey:@"os_model"];
@@ -217,6 +227,14 @@
         [[FBHelper getCurrentController] hideHud];
         [[FBHelper getCurrentController] showHint:@"请求失败"];
     }];
+}
+#pragma mark - 弹窗代理
+- (void)homeAdPopViewSureClick
+{
+    self.adPopView.hidden = YES;
+    
+    FBHomeConfItemModel *topItemModel = [self.homeConfModel.alter_button objectAtIndex:0];
+    [self clickItemWithModel:topItemModel];
 }
 #pragma mark - click
 - (void)searchBtnClick
@@ -419,6 +437,17 @@
         make.height.offset(130);
         
         make.bottom.offset(-10);
+    }];
+    
+    //广告图
+    UIWindow *window = kKeyWindow;
+    FBHomeAdPopView *adPopView = [[FBHomeAdPopView alloc] init];
+    adPopView.hidden = YES;
+    adPopView.delegate = self;
+    [window addSubview:adPopView];
+    self.adPopView = adPopView;
+    [adPopView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(window);
     }];
 }
 - (UIView *)setupLittleItemViewWithTag:(int)tag

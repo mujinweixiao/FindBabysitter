@@ -59,6 +59,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 /** 转换为字符串 */
 #define kStr(string) (isNULLString(string) ? @"" : string)
 
+#define NonNULLString(string) (isNULLString(string) ? @"" : string)
 
 
 #endif /* FBHeader_h */

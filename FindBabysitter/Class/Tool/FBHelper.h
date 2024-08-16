@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)stringToImage:(NSString *)str;
 
 // 获取ADFA
-//+ (NSString *)getIdfa;
++ (NSString *)getIdfa;
 @end
 
 NS_ASSUME_NONNULL_END

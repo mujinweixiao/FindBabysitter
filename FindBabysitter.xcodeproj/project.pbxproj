@@ -89,6 +89,7 @@
 		A8B06FAF2C3B8A7C00319F53 /* FBHomeConfManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B06FAE2C3B8A7B00319F53 /* FBHomeConfManager.m */; };
 		A8B06FB22C3BAB4000319F53 /* FBLoginPopController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B06FB12C3BAB4000319F53 /* FBLoginPopController.m */; };
 		A8C16EB22C50F50B00CB5F4F /* FBTemplateSixModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C16EB12C50F50B00CB5F4F /* FBTemplateSixModel.m */; };
+		A8F3536D2C6DBDFF004DF938 /* FBHomeAdPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F3536C2C6DBDFF004DF938 /* FBHomeAdPopView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -270,6 +271,8 @@
 		A8B06FB12C3BAB4000319F53 /* FBLoginPopController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBLoginPopController.m; sourceTree = "<group>"; };
 		A8C16EB02C50F50B00CB5F4F /* FBTemplateSixModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBTemplateSixModel.h; sourceTree = "<group>"; };
 		A8C16EB12C50F50B00CB5F4F /* FBTemplateSixModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBTemplateSixModel.m; sourceTree = "<group>"; };
+		A8F3536B2C6DBDFF004DF938 /* FBHomeAdPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBHomeAdPopView.h; sourceTree = "<group>"; };
+		A8F3536C2C6DBDFF004DF938 /* FBHomeAdPopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBHomeAdPopView.m; sourceTree = "<group>"; };
 		C0D737F5C7E30DDBB09BEFEA /* Pods-FindBabysitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindBabysitter.release.xcconfig"; path = "Target Support Files/Pods-FindBabysitter/Pods-FindBabysitter.release.xcconfig"; sourceTree = "<group>"; };
 		C8AE216D34394DFD788556B6 /* Pods_FindBabysitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindBabysitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -413,6 +416,8 @@
 				A847A4FF2C3524BA007CA612 /* FBAppointmentPopView.m */,
 				A847A5072C3532E9007CA612 /* FBLoginPopView.h */,
 				A847A5082C3532E9007CA612 /* FBLoginPopView.m */,
+				A8F3536B2C6DBDFF004DF938 /* FBHomeAdPopView.h */,
+				A8F3536C2C6DBDFF004DF938 /* FBHomeAdPopView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -882,6 +887,7 @@
 				A847A5432C353E7F007CA612 /* YYTextInput.m in Sources */,
 				A8A9D7002C328ABA009042E1 /* FBFeedbackController.m in Sources */,
 				A80B28182C2D418E00C62C5B /* FBNavigationController.m in Sources */,
+				A8F3536D2C6DBDFF004DF938 /* FBHomeAdPopView.m in Sources */,
 				A8B06FAF2C3B8A7C00319F53 /* FBHomeConfManager.m in Sources */,
 				A847A5742C378515007CA612 /* FBTemplateOneModel.m in Sources */,
 				A8A9D6E62C323B5C009042E1 /* FDDemoScrollView.m in Sources */,
@@ -1098,6 +1104,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "云上保姆";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"云上保姆\"需要访问您的位置，以便于更精确的为您配送";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"云上保姆\"需要访问您的位置，以便于更精确的为您配送";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"云上保姆\" 需要访问你的设备广告标识数据用于投放个性化广告";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1144,6 +1151,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "云上保姆";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "\"云上保姆\"需要访问您的位置，以便于更精确的为您配送";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"云上保姆\"需要访问您的位置，以便于更精确的为您配送";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"云上保姆\" 需要访问你的设备广告标识数据用于投放个性化广告";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

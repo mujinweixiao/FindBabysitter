@@ -25,7 +25,7 @@
         @"bottom_button":[FBHomeConfItemModel class],
         @"banners":[FBHomeConfItemModel class],
         @"menu_button":[FBHomeConfItemModel class],
-
+        @"alter_button":[FBHomeConfItemModel class],
     };
 }
 @end

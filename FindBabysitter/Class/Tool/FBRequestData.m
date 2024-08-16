@@ -38,7 +38,7 @@ static AFHTTPSessionManager *manager;
 //        @"packageID":[AppHelper getAppBundleId],// 包名
 //        @"from-type":@"3",// iOS访问
 //        @"iOSVersion":[AppHelper iOSVersion],// 操作系统版本号
-//        @"idfa":NonNULLString([AppHelper getIdfa])// 广告标识
+        @"idfa":NonNULLString([FBHelper getIdfa])// 广告标识
     };
     if (headerFieldValueDictionary != nil) {
         for (NSString *httpHeaderField in headerFieldValueDictionary.allKeys) {

@@ -39,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *banners;
 ///菜单按钮
 @property (nonatomic, strong) NSArray *menu_button;
+///弹窗
+@property (nonatomic, strong) NSArray *alter_button;
+
 @end
 
 NS_ASSUME_NONNULL_END
