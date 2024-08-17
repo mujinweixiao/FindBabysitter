@@ -233,6 +233,7 @@
 {
     self.adPopView.hidden = YES;
     
+    [FBUMManager event:@"alter_button_1" attributes:@{}];
     FBHomeConfItemModel *topItemModel = [self.homeConfModel.alter_button objectAtIndex:0];
     [self clickItemWithModel:topItemModel];
 }
