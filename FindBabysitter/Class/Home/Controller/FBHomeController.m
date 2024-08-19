@@ -51,7 +51,10 @@
 @end
 
 @implementation FBHomeController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [FBHelper getIdfa];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -61,11 +64,11 @@
     [self setupUI];
     [self requestTempData];
     [self requestConfData];
-    [self requestToSubmitActiveData];
-    
     
     //首页配置接口请求成功
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netLinkSuccess:) name:NotNetLinkSuccess object:nil];
+    //IDFA操作
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idfaUserClick:) name:UserTagIDFAPopView object:nil];
 }
 - (void)dealloc
 {
@@ -76,6 +79,10 @@
 - (void)netLinkSuccess:(NSNotification *)notification{
     [self requestTempData];
     [self requestConfData];
+    [FBHelper getIdfa];
+}
+//IDFA事件
+- (void)idfaUserClick:(NSNotification *)notification{
     [self requestToSubmitActiveData];
 }
 #pragma mark - data
@@ -193,11 +200,6 @@
 //应用第一次安装调用
 - (void)requestToSubmitActiveData
 {
-    NSString *uuid = [FBHelper iOSUUID];
-    if(uuid.length == 0){
-        return;
-    }
-    
     NSString *firstOpen = [[NSUserDefaults standardUserDefaults] objectForKey:FBFirstOpen];
     if(firstOpen.length > 0){
         return;

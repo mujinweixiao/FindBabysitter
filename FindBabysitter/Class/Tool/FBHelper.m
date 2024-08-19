@@ -554,16 +554,31 @@
 }
 // 获取ADFA
 + (NSString *)getIdfa {
+    
+    NSString *idfa = [[NSUserDefaults standardUserDefaults] objectForKey:FBIDFA];
+    if(idfa.length > 0){
+        return idfa;
+    }
+    
     __block NSString *idfaStr = @"";
     if (@available(iOS 14, *)) {
         [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            NSLog(@"获取IDFA结果= %lu",(unsigned long)status);
             switch (status) {
                 case ATTrackingManagerAuthorizationStatusAuthorized:
 //                    NSLog(@"ad用户允许");
                     idfaStr = [[ASIdentifierManager sharedManager] advertisingIdentifier].UUIDString;
+                    NSLog(@"获取IDFA结果= 用户允许");
+                    if(idfaStr.length > 0){
+                        [[NSUserDefaults standardUserDefaults] setValue:idfaStr forKey:FBIDFA];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
+                    }
+                    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:UserTagIDFAPopView object:nil userInfo:nil]];
                     break;
                 case ATTrackingManagerAuthorizationStatusDenied:
 //                    NSLog(@"ad用户拒绝");
+                    NSLog(@"获取IDFA结果= 用户拒绝");
+                    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:UserTagIDFAPopView object:nil userInfo:nil]];
                     break;
                 case ATTrackingManagerAuthorizationStatusNotDetermined:
 //                    NSLog(@"ad用户没有选择");
@@ -575,12 +590,13 @@
     } else {
         // 判断在设置-隐私里用户是否打开了广告跟踪
         if ([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
-            NSString *idfa = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
+//            NSString *idfa = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
 //            NSLog(@"idfa-----%@",idfa);
         } else {
 //            NSLog(@"请在设置-隐私-广告中打开广告跟踪功能");
         }
     }
+
     return idfaStr;
 }
 

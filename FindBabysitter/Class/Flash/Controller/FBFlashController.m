@@ -29,7 +29,8 @@
     [super viewWillAppear:animated];
     [_mapView viewWillAppear];
     [self dealDataToUI];
-    
+    [FBHelper getIdfa];
+
     if([FBHomeConfManager shareInstance].homeConfModel.menu_button.count == 2){
         FBHomeConfItemModel *first = [[FBHomeConfManager shareInstance].homeConfModel.menu_button firstObject];
         FBHomeConfItemModel *last = [[FBHomeConfManager shareInstance].homeConfModel.menu_button lastObject];

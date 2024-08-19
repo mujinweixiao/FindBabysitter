@@ -11,12 +11,16 @@
 /**  ------------------------------------------本地存储------------------------------------------   **/
 //存储标识，设备第一次打开判断 无值代表第一次打开
 #define FBFirstOpen @"FBFirstOpen"
+//存储IDFA
+#define FBIDFA @"FBIDFA"
 
 /**  ------------------------------------------通知------------------------------------------   **/
 //配置接口请求成功
 #define NotHomeConfigRequestSuccess @"NotHomeConfigRequestSuccess"
 //联网成功
 #define NotNetLinkSuccess @"NotNetLinkSuccess"
+//IDFA用户操作
+#define UserTagIDFAPopView @"UserTagIDFAPopView"
 
 
 /**  ------------------------------------------三方key------------------------------------------   **/
