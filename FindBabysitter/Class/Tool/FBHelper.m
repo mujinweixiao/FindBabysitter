@@ -556,6 +556,9 @@
 + (NSString *)getIdfa {
     
     NSString *idfa = [[NSUserDefaults standardUserDefaults] objectForKey:FBIDFA];
+    if([idfa isEqualToString:@"refuse"]){//拒绝
+        return @"";
+    }
     if(idfa.length > 0){
         return idfa;
     }
@@ -578,6 +581,9 @@
                 case ATTrackingManagerAuthorizationStatusDenied:
 //                    NSLog(@"ad用户拒绝");
                     NSLog(@"获取IDFA结果= 用户拒绝");
+                    [[NSUserDefaults standardUserDefaults] setValue:@"refuse" forKey:FBIDFA];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
                     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:UserTagIDFAPopView object:nil userInfo:nil]];
                     break;
                 case ATTrackingManagerAuthorizationStatusNotDetermined:

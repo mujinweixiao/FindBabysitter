@@ -212,13 +212,13 @@
     [dict setValue:@"iOS" forKey:@"os_system"];
     [dict setValue:[FBHelper iphoneType] forKey:@"os_model"];
     
+    NSLog(@"第一次安装 %@",dict);
     [FBRequestData requestWithUrl:toSubmitActive_Url para:dict Complete:^(NSData * _Nonnull data) {
         [[FBHelper getCurrentController] hideHud];
         NSDictionary *registerDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         NSString *code = [registerDic string:@"code"];
         if([code isEqualToString:@"0"]){
             NSLog(@"");
-            [[NSUserDefaults standardUserDefaults] setValue:FBFirstOpen forKey:FBFirstOpen];
         }else{
             NSString *msg = [registerDic string:@"msg"];
             [[FBHelper getCurrentController] showHint:msg];

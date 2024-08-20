@@ -31,7 +31,7 @@ static AFHTTPSessionManager *manager;
 //        @"os-model":[AppHelper iphoneType],// 设备类型
 //        @"clientIP":ipAddressStr,// ip地址
         @"Authorization":Authorization,// 用户token
-        @"uuid":[FBHelper iOSUUID],// 用户token
+//        @"uuid":[FBHelper iOSUUID],// 用户token
         @"os-version":[FBHelper getAppVersion],// 用户token
         @"os-system":[NSString stringWithFormat:@"iOS %@",[FBHelper iOSVersion]],// 用户token
         @"os-model":[FBHelper iphoneType],// 用户token
