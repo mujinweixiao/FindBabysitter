@@ -16,6 +16,8 @@
 #import "MJRefresh.h"
 /** 图片加载  (搬砖小弟) **/
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/SDWebImage.h>
+
 //动画侧滑，默认不需要引用默认所有界面都可使用，引用是用于某些界面需要隐藏导航栏
 #import "UINavigationController+FDFullscreenPopGesture.h"
 //有scrollview侧滑返回

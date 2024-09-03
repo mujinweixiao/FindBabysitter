@@ -22,7 +22,13 @@
 @property(nonatomic,strong)FBHomeConfModel *homeConfModel;
 
 ///搜索按钮
+@property(nonatomic,strong)UIView *searchView;
 @property(nonatomic,strong)UIButton *searchBtn;
+@property(nonatomic,strong)UIImageView *searchBackgroundImgView;
+@property(nonatomic,strong)UILabel *searchTitleLab;
+@property(nonatomic,strong)UIImageView *leftIconImgView;
+@property(nonatomic,strong)UIImageView *rightIconImgView;
+
 //大按钮部分
 @property(nonatomic,strong)UIImageView *bigItemBackgroundImgView;
 @property(nonatomic,strong)UILabel *bigItemTitleLab;
@@ -146,6 +152,10 @@
     
     //搜索按钮，返回整个图
     FBHomeConfItemModel *topItemModel = [homeConfModel.top_button objectAtIndex:0];
+//    [self.searchBackgroundImgView sd_setImageWithURL:[NSURL URLWithString:topItemModel.shortcut_icon]];
+    self.searchTitleLab.text = topItemModel.shortcut_title;
+//    [self.leftIconImgView sd_setImageWithURL:[NSURL URLWithString:topItemModel.shortcut_icon]];
+//    [self.rightIconImgView sd_setImageWithURL:[NSURL URLWithString:topItemModel.shortcut_horn_icon]];
 
     //大item
     FBHomeConfItemModel *threeItemModel = [homeConfModel.middle_button objectAtIndex:2];
@@ -372,12 +382,11 @@
         make.top.offset(StatusBarHeight + 10);
     }];
     
-    UIButton *searchBtn = [[UIButton alloc] init];
-    [searchBtn setImage:[UIImage imageNamed:@"img_home_search"] forState:UIControlStateNormal];
-    [searchBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [contentView addSubview:searchBtn];
-    self.searchBtn = searchBtn;
-    [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    //搜索部分
+    UIView *searchView = [self setupSearchView];
+    [contentView addSubview:searchView];
+    self.searchView = searchView;
+    [searchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(topImgView.mas_bottom).offset(-40);
         make.left.offset(0);
         make.right.offset(0);
@@ -387,7 +396,7 @@
     UIView *bigItemView = [self setupBigItemView];
     [contentView addSubview:bigItemView];
     [bigItemView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(searchBtn.mas_bottom).offset(10);
+        make.top.equalTo(searchView.mas_bottom).offset(10);
         make.right.offset(-15);
         make.left.equalTo(contentView.mas_centerX).offset(7);
         make.height.equalTo(bigItemView.mas_width).multipliedBy(191.0/165.0);
@@ -452,6 +461,67 @@
     [adPopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(window);
     }];
+}
+//搜索部分
+- (UIView *)setupSearchView
+{
+    UIView *rootView = [[UIView alloc] init];
+    
+    UIImageView *iconImgView = [[UIImageView alloc] init];
+    iconImgView.image = [UIImage imageNamed:@"img_search_background"];
+    iconImgView.contentMode = UIViewContentModeScaleAspectFit;
+    [rootView addSubview:iconImgView];
+    self.searchBackgroundImgView = iconImgView;
+    [iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(rootView);
+//        make.top.offset(0);
+//        make.width.offset(10);
+//        make.height.offset(10);
+        make.edges.equalTo(rootView);
+    }];
+    
+    UILabel *titleLab = [[UILabel alloc] init];
+    titleLab.font = BoldFont(20);
+    titleLab.text = @"马上联系育儿嫂";
+    titleLab.textColor = [UIColor colorWithHex:@"#F46D5B"];
+    [rootView addSubview:titleLab];
+    self.searchTitleLab = titleLab;
+    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(rootView);
+        make.centerY.equalTo(iconImgView.mas_centerY).offset(-6);
+    }];
+    
+    UIImageView *leftIconImgView = [[UIImageView alloc] init];
+    leftIconImgView.image = [UIImage imageNamed:@"img_ren_search"];
+    [rootView addSubview:leftIconImgView];
+    self.leftIconImgView = leftIconImgView;
+    [leftIconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(titleLab);
+        make.right.equalTo(titleLab.mas_left).offset(-15);
+        make.width.offset(20);
+        make.height.offset(20);
+    }];
+    
+    UIImageView *rightIconImgView = [[UIImageView alloc] init];
+    rightIconImgView.image = [UIImage imageNamed:@"img_arrow_search"];
+    [rootView addSubview:rightIconImgView];
+    self.rightIconImgView = rightIconImgView;
+    [rightIconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(titleLab);
+        make.left.equalTo(titleLab.mas_right).offset(15);
+        make.width.offset(20);
+        make.height.offset(20);
+    }];
+    
+    UIButton *searchBtn = [[UIButton alloc] init];
+    [searchBtn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [rootView addSubview:searchBtn];
+    self.searchBtn = searchBtn;
+    [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(rootView);
+    }];
+    
+    return rootView;
 }
 - (UIView *)setupLittleItemViewWithTag:(int)tag
 {

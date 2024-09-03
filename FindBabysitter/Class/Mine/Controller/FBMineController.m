@@ -47,7 +47,7 @@
     NSArray *array = @[
         @{@"ID":@"message",@"icon":@"img_mine_message",@"title":@"消息中心"},
         @{@"ID":@"feedback",@"icon":@"img_mine_feedback",@"title":@"意见反馈"},
-        @{@"ID":@"about",@"icon":@"img_mine_about",@"title":@"关于我们"},
+        @{@"ID":@"about",@"icon":@"img_mine_about",@"title":@"关于、入驻、合作"},
         @{@"ID":@"list",@"icon":@"img_min_list",@"title":@"个人信息收集清单"},
     ];
     self.dataArray = array;
