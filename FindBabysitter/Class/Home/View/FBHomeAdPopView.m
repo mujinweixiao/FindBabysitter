@@ -52,7 +52,7 @@
     [self addSubview:backgroundImgView];
     self.backgroundImgView = backgroundImgView;
     [backgroundImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.mas_centerY).offset(-80);
+        make.centerY.equalTo(self.mas_centerY).offset(0);
         make.left.offset(54);
         make.right.offset(-54);
         make.height.equalTo(backgroundImgView.mas_width).multipliedBy(330.0/268.0);
