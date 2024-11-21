@@ -8,7 +8,14 @@
 #import "FBFlashController.h"
 #import "FBFlashCell.h"
 #import "FBDistributionController.h"
-@interface FBFlashController ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,BMKLocationManagerDelegate>
+#import <WebKit/WebKit.h>
+
+@interface FBFlashController ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,BMKLocationManagerDelegate,WKNavigationDelegate>
+@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) UIProgressView *progressView;
+//判断网页是否已经加载过
+@property(nonatomic,assign)BOOL webLoadSComplete;
+
 @property(nonatomic,strong)UITableView *mainTableView;
 @property(nonatomic,strong)UIView *headerView;
 @property(nonatomic,strong)UIView *footerView;
@@ -33,9 +40,21 @@
 
     if([FBHomeConfManager shareInstance].homeConfModel.menu_button.count == 2){
         FBHomeConfItemModel *first = [[FBHomeConfManager shareInstance].homeConfModel.menu_button firstObject];
-        FBHomeConfItemModel *last = [[FBHomeConfManager shareInstance].homeConfModel.menu_button lastObject];
+//        FBHomeConfItemModel *last = [[FBHomeConfManager shareInstance].homeConfModel.menu_button lastObject];
 
         self.title = first.shortcut_title;
+        
+        
+        if([first.shortcut_type isEqualToString:@"2"]){//网页
+            self.webView.hidden = NO;
+            //判断展示网页还是模版
+            if(!self.webLoadSComplete){
+                [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:first.shortcut_value]]];
+                self.webLoadSComplete = YES;
+            }
+        }else{
+            self.webView.hidden = YES;
+        }
     }
 }
 -(void)viewWillDisappear:(BOOL)animated
@@ -141,7 +160,31 @@
     self.footerView = rootView;
     return rootView;
 }
+#pragma mark - webviewdelegate
+// KVO 监听 estimatedProgress 属性的变化
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                      context:(void *)context {
+   if (object == self.webView && [keyPath isEqualToString:@"estimatedProgress"]) {
+       [self.progressView setProgress:self.webView.estimatedProgress animated:YES];
+   }
+}
 
+// WKNavigationDelegate 代理方法，当页面开始加载时调用
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+   self.progressView.hidden = NO;
+}
+
+// WKNavigationDelegate 代理方法，当页面加载完成时调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+   self.progressView.hidden = YES;
+}
+
+// 移除 KVO 监听
+- (void)dealloc {
+   [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+}
 #pragma mark - UI
 - (void)setupUI
 {
@@ -187,6 +230,25 @@
         make.bottom.equalTo(sureBtn.mas_top).offset(0);
         make.right.offset(0);
     }];
+    
+    //网页view
+    WKWebView *webView = [[WKWebView alloc] init];
+    webView.navigationDelegate = self;
+    webView.backgroundColor = [UIColor whiteColor];
+    webView.hidden = YES;
+    [self.view addSubview:webView];
+    self.webView = webView;
+    [webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    // 创建 UIProgressView
+   self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, StatusBarHeight + 44, self.view.frame.size.width, 2)];
+    self.progressView.hidden = YES;
+   [self.view addSubview:self.progressView];
+
+   // 监听 WKWebView 的 estimatedProgress 属性
+   [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
 }
 - (UIView *)setupHeaderView
 {
